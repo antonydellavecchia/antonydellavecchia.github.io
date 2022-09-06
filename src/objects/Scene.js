@@ -1,8 +1,4 @@
 import * as THREE from  'three'
-import BassShader from '../shaders/BassShader.glsl'
-import GuitarShader from '../shaders/GuitarShader.glsl'
-import AudioVertexShader from '../shaders/AudioVertexShader.glsl'
-import AudioObject from './AudioObject'
 import Model from './Model'
 import VectorField from './VectorField'
 import CameraGroup from './CameraGroup'
@@ -80,13 +76,6 @@ export default class Scene {
     objects.forEach(object => {
       this.scene.add(object)
     })
-  }
-
-  async loadAudioObject(url) {
-    this.audio = new AudioObject(url)
-    console.log(this.audio, 'audio')
-
-    return this.audio
   }
 
   loadMeshes(uniforms) {

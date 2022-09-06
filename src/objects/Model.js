@@ -1,4 +1,3 @@
-import AudioVertexShader from '../shaders/AudioVertexShader.glsl'
 import VertexShader from '../shaders/VertexShader.glsl'
 import { audioMesh } from '../utils'
 import VectorField from './VectorField'
