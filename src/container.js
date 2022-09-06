@@ -2,23 +2,6 @@ import React, { useRef, useEffect, useState, useContext, useReducer } from 'reac
 import {SphereBufferGeometry, PlaneGeometry} from 'three'
 import { useActions } from './actions'
 import Scene from './objects/Scene'
-import axios from 'axios'
-
-const AudioContext = React.createContext()
-const AudioProvider = ({reducer, initialState, children}) => {
-  const [state, dispatch] = useReducer(reducer, initialState)
-  const actions = useActions(state, dispatch)
-  const value = {
-    state: state,
-    actions: actions
-  }
-  
-  return(
-    <AudioContext.Provider value={value} >
-      { children }
-    </AudioContext.Provider>
-  )
-}
 
 const initialState = {
   loading: true
@@ -34,13 +17,11 @@ const reducer = (state, action) => {
   }
 }
 
-const Container = ({props}) => {
-  const {state, actions} = useContext(AudioContext)
+const Container = (props) => {
   const mount = useRef(null)
   const [isAnimating, setAnimating] = useState(false)
   const controls = useRef(null)
   const {backgroundShader} = props
-  
   
   useEffect(() => {
     let scene = initScene(mount, backgroundShader)
@@ -92,20 +73,12 @@ const Container = ({props}) => {
       }
     }
 
-    catch {
-      console.log('waiyting for media')
+    catch(e){
+      console.log(e)
     }
   }, [isAnimating])
   
   return <div className="container" ref={mount} onClick={() => setAnimating(!isAnimating)} />
-}
-
-const AudioContainer = (props) => {
-  return (
-    <AudioProvider initialState={initialState} reducer={reducer}>
-      <Container props={props}/>
-    </AudioProvider>
-  )
 }
 
 const initScene = (mount, backgroundShader) => {
@@ -129,9 +102,8 @@ const initScene = (mount, backgroundShader) => {
     models
   })
   
-  scene.loadAudioObject({url: 'thedeadfish.mp3'}).then(({uniforms}) => {
-    scene.loadMeshes(uniforms)
-  })
+  scene.loadMeshes({})
+  
   return scene
 }
-export default AudioContainer
+export default Container

@@ -39,26 +39,22 @@ export default class Scene {
   }
 
   renderScene() {
-    if (!this.paused){
-      this.cameraAnimate()
-      this.models.forEach(model => model.animate())
-      this.renderer.render(this.scene, this.camera)
-      this.audio.animate()
+    this.cameraAnimate()
+    this.models.forEach(model => model.animate())
+    this.renderer.render(this.scene, this.camera)
+    this.audio.animate()
 
-      if (this.step > 30) {
-	//this.cameraGroup.next()
-	this.step = 0
-      }
+    if (this.step > 30) {
+      //this.cameraGroup.next()
+      this.step = 0
+    }
 
-      else {
-	this.step += 1
-      }
+    else {
+      this.step += 1
     }
   }
 
   play() {
-    this.audio.play()
-    this.paused = false
     //this.cameraGroup.switch(3)
     //this.cameraGroup.follow(
     //  this.models[0].mesh.position,
@@ -67,7 +63,6 @@ export default class Scene {
   }
 
   pause() {
-    this.audio.pause()
     this.paused = true
   }
 
