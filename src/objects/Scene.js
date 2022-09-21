@@ -16,7 +16,7 @@ export default class Scene {
       focus: {x: 10, y: 1, z: 10},
       vectorField: "ZERO"
     }, 0)
-    this.step = 0
+    this.stepSize = 0.001
     this.paused = true
     console.log(this.scene)
   }
@@ -40,18 +40,8 @@ export default class Scene {
 
   renderScene() {
     this.cameraAnimate()
-    this.models.forEach(model => model.animate())
+    this.models.forEach(model => model.animate(this.stepSize))
     this.renderer.render(this.scene, this.camera)
-    this.audio.animate()
-
-    if (this.step > 30) {
-      //this.cameraGroup.next()
-      this.step = 0
-    }
-
-    else {
-      this.step += 1
-    }
   }
 
   play() {

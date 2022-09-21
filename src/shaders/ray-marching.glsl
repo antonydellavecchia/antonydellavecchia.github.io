@@ -137,6 +137,6 @@ void main() {
   vec3 ray_origin = vec3(0.0, 0.0, 1.0);
   vec2 uv =  gl_FragCoord.xy / u_resolution.xy;
   vec3 P = rotate_vertex_position(normalize(vUv.xyz), vec3(0.0, cos(u_time),sin(u_time)), 10.0 * u_time);
-  vec3 color = vec3(step(abs(polynomial(P)), 0.05), 0.0, P.z);
+  vec3 color = vec3(step(abs(polynomial(P)), 0.05), step(abs(polynomial(P)), 0.05), P.z);
   gl_FragColor = vec4(abs(color), 1.0);
 }

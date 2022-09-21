@@ -41,6 +41,11 @@ export default class Model {
   animate(stepSize) {
     let curr = this.mesh.position
     let next = this.vectorField.flow({position: curr, stepSize})
+    if (this.mesh.material.uniforms != null) {
+      this.mesh.material.uniforms.u_time.value += stepSize
+    }
+    
+
     this.mesh.position.set(
       next.x,
       next.y,

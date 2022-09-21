@@ -19,7 +19,7 @@ const reducer = (state, action) => {
 
 const Container = (props) => {
   const mount = useRef(null)
-  const [isAnimating, setAnimating] = useState(false)
+  const [isAnimating, setAnimating] = useState(true)
   const controls = useRef(null)
   const {backgroundShader} = props
   
@@ -78,7 +78,7 @@ const Container = (props) => {
     }
   }, [isAnimating])
   
-  return <div className="container" ref={mount} onClick={() => setAnimating(!isAnimating)} />
+  return <div className="three-container" ref={mount} onClick={() => setAnimating(!isAnimating)} />
 }
 
 const initScene = (mount, backgroundShader) => {
@@ -102,7 +102,7 @@ const initScene = (mount, backgroundShader) => {
     models
   })
   
-  scene.loadMeshes({})
+  scene.loadMeshes({u_time: {value: 0}})
   
   return scene
 }
