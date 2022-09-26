@@ -2,7 +2,7 @@
   "name": "antonydellavecchia-website",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://antonydellavecchia.github.io"
+  "homepage": "https://antonydellavecchia.github.io",
   "dependencies": {
     "@babel/core": "7.6.0",
     "@svgr/webpack": "4.3.2",
@@ -30,6 +30,7 @@
     "eslint-plugin-react-hooks": "^1.6.1",
     "file-loader": "3.0.1",
     "fs-extra": "7.0.1",
+    "gh-pages": "^4.0.0",
     "glslify-loader": "^2.0.0",
     "html-webpack-plugin": "4.0.0-beta.5",
     "identity-obj-proxy": "3.0.0",
@@ -68,7 +69,9 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
