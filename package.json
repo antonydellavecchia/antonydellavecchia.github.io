@@ -1,7 +1,8 @@
 {
-  "name": "react-audio-visuals",
+  "name": "antonydellavecchia-website",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://antonydellavecchia.github.io"
   "dependencies": {
     "@babel/core": "7.6.0",
     "@svgr/webpack": "4.3.2",
