@@ -38,7 +38,7 @@ function App() {
           </p>
           <p className="subtitle has-text-light">I received my MSc from <a href="https://www.mcgill.ca/">McGill University</a> under the supervision of <a href="https://www.math.mcgill.ca/~wise/">Daniel T. Wise</a>. During my MSc I developped software for checking if certain CW complexes whose fundamental groups have a single defining relation have nonpositive sectional curvature. </p>
           <p className="subtitle has-text-light">
-            I am interested in computational algebra and geometry including it's applications.
+            I am interested in computational algebra and geometry including its applications.
           </p>
         </section>
         <section className="section">
