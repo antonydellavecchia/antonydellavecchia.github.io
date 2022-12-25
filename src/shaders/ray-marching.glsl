@@ -53,6 +53,6 @@ void main() {
   vec3 ray_origin = vec3(0.0, 0.0, 1.0);
   vec2 uv =  gl_FragCoord.xy / u_resolution.xy;
   vec3 P = rotate_vertex_position(normalize(vUv.xyz), vec3(0.0, cos(u_time),sin(u_time)), 10.0 * u_time);
-  vec3 color = vec3(0.5, 0.3 * step(abs(polynomial(P)), 0.05) + 0.7, P.z * P.y * 0.5);
+  vec3 color = vec3(0.3, 0.3 * smoothstep(0.0, 0.05, abs(polynomial(P))) + 0.7, P.z * P.y * 0.01);
   gl_FragColor = vec4(abs(color), 0.3);
 }
