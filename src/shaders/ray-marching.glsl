@@ -46,13 +46,13 @@ vec3 rotate_vertex_position(vec3 position, vec3 axis, float angle)
 }
 
 float polynomial(vec3 normal) {
-  return pow(normal.x, 2.0) * normal.z - pow(normal.y, 2.0) * normal.x + 3.0 * cos(sqrt(2.0) * u_time) *normal.z * normal.x * normal.y * 10.0 * u_time * sin(1.0);
+  return pow(normal.x, 3.0) * normal.z - pow(normal.y, 2.0) * pow(normal.x, 2.0) + 3.0 * cos(sqrt(2.0) * u_time) *normal.z * normal.x * pow(normal.y, 2.0) * 10.0 * u_time * sin(1.0);
 }
 
 void main() {
   vec3 ray_origin = vec3(0.0, 0.0, 1.0);
   vec2 uv =  gl_FragCoord.xy / u_resolution.xy;
   vec3 P = rotate_vertex_position(normalize(vUv.xyz), vec3(0.0, cos(u_time),sin(u_time)), 10.0 * u_time);
-  vec3 color = vec3(0.3, 0.3 * smoothstep(0.0, 0.05, abs(polynomial(P))) + 0.7, P.z * P.y * 0.01);
+  vec3 color = vec3(0.7 * smoothstep(0.0, 0.01, abs(polynomial(P))) + 0.3, 0.3 * smoothstep(0.0, 0.001, abs(polynomial(P))) + 0.7, P.z * P.y * 0.1);
   gl_FragColor = vec4(abs(color), 0.3);
 }
