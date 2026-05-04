@@ -1,16 +1,9 @@
+import { Mesh, ShaderMaterial, DoubleSide } from 'three'
 import VertexShader from '../shaders/VertexShader.glsl'
-import { audioMesh } from '../utils'
 import VectorField from './VectorField'
 
 export default class Model {
-  constructor({
-    geometry,
-    name,
-    position = {x:0, y:0, z:0},
-    vertexShader = VertexShader,
-    fragmentShader,
-    vectorFieldConfig
-  }) {
+  constructor({ geometry, name, position = {x: 0, y: 0, z: 0}, vertexShader = VertexShader, fragmentShader, vectorFieldConfig }) {
     this.geometry = geometry
     this.name = name
     this.position = position
@@ -20,36 +13,27 @@ export default class Model {
   }
 
   initMesh(uniforms) {
-    let mesh = audioMesh({
+    const material = new ShaderMaterial({
       uniforms,
-      geometry: this.geometry,
       vertexShader: this.vertexShader,
-      fragmentShader: this.fragmentShader
+      fragmentShader: this.fragmentShader,
+      transparent: true,
+      opacity: 0.5,
+      side: DoubleSide
     })
-
+    const mesh = new Mesh(this.geometry, material)
     mesh.name = this.name
-    mesh.position.set(
-      this.position.x,
-      this.position.y,
-      this.position.z
-    )
-
+    mesh.position.set(this.position.x, this.position.y, this.position.z)
     this.mesh = mesh
     return mesh
   }
 
   animate(stepSize) {
-    let curr = this.mesh.position
-    let next = this.vectorField.flow({position: curr, stepSize})
+    const curr = this.mesh.position
+    const next = this.vectorField.flow({ position: curr, stepSize })
     if (this.mesh.material.uniforms != null) {
       this.mesh.material.uniforms.u_time.value += stepSize
     }
-    
-
-    this.mesh.position.set(
-      next.x,
-      next.y,
-      next.z
-    )
+    this.mesh.position.set(next.x, next.y, next.z)
   }
 }

@@ -2,42 +2,55 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    <title>Antony Della Vecchia</title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    <div id="three-container"></div>
+    <main id="content">
+      <header>
+        <div class="profile">
+          <img src="%PUBLIC_URL%/photo.jpg" alt="Antony Della Vecchia" class="photo" />
+          <div class="profile-info">
+            <h1>Antony Della Vecchia</h1>
+            <p>Office: Strasse des 17. Juni 136, Room 626</p>
+            <p>Email: <a href="mailto:vecchia@math.tu-berlin.de">vecchia@math.tu-berlin.de</a></p>
+            <p><a href="https://github.com/antonydellavecchia">GitHub</a></p>
+          </div>
+        </div>
+      </header>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+      <section>
+        <h2>About Me</h2>
+        <p>
+          I am a member of
+          <a href="https://www.math.tu-berlin.de/fachgebiete_ag_diskalg/fg_diskrete_mathematik_geometrie/v-menue/diskrete_mathematik_geometrie/">The Discrete Geometry Group</a>
+          of <a href="https://page.math.tu-berlin.de/~joswig/">Michael Joswig</a> at the
+          <a href="https://www.math.tu-berlin.de/menue/home/">Institute of Mathematics of the Technical University in Berlin</a>.
+          I am currently an employee of <a href="https://www.mardi4nfdi.de/about/mission">MaRDI</a> working on serialization and databases for computer algebra.
+        </p>
+        <p>
+          I received my MSc from <a href="https://www.mcgill.ca/">McGill University</a> under the supervision of
+          <a href="https://www.math.mcgill.ca/~wise/">Daniel T. Wise</a>. During my MSc I developed software for
+          checking if certain CW complexes whose fundamental groups have a single defining relation have nonpositive sectional curvature.
+        </p>
+        <p>I am interested in computational algebra and geometry including their applications.</p>
+      </section>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+      <section>
+        <h2>Papers</h2>
+        <ul id="papers-list"></ul>
+      </section>
+
+      <section>
+        <h2>Software</h2>
+        <p>I am currently contributing to:</p>
+        <ul>
+          <li><a href="https://oscar-system.github.io/Oscar.jl/stable/">OSCAR</a></li>
+          <li><a href="https://polymake.org/doku.php">polymake</a></li>
+        </ul>
+      </section>
+    </main>
   </body>
 </html>

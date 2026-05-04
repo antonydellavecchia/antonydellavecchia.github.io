@@ -13,9 +13,9 @@ export default function getConfig(name = '') {
   case "SQUARE_SUSPENSION":
     return [0, 1, 2, 3, 4, 5].map(i => {
       return {
-        x: i % 3 == 0 ? Math.pow(-1, i % 2) : 0,
-        y: i % 3 == 1 ? Math.pow(-1, i % 2) : 0,
-        z: i % 3 == 2 ? Math.pow(-1, i % 2) : 0
+        x: i % 3 === 0 ? Math.pow(-1, i % 2) : 0,
+        y: i % 3 === 1 ? Math.pow(-1, i % 2) : 0,
+        z: i % 3 === 2 ? Math.pow(-1, i % 2) : 0
       }
     })
 

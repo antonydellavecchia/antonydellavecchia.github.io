@@ -1,17 +1,46 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import './style.css'
+import { SphereGeometry } from 'three'
+import RayMarching from './shaders/ray-marching.glsl'
+import Scene from './objects/Scene'
+import { renderPublications } from './publications'
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+renderPublications()
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const mount = document.getElementById('three-container')
+
+const scene = new Scene({
+  width: window.innerWidth,
+  height: window.innerHeight,
+  models: [{
+    geometry: new SphereGeometry(100, 102, 160),
+    name: 'background',
+    fragmentShader: RayMarching,
+    position: { x: 0, y: 0, z: 0 }
+  }]
+})
+
+scene.renderer.setPixelRatio(window.devicePixelRatio)
+scene.loadMeshes({ u_time: { value: 0 } })
+mount.appendChild(scene.renderer.domElement)
+
+let frameId
+
+const animate = () => {
+  scene.renderScene()
+  frameId = requestAnimationFrame(animate)
+}
+
+window.addEventListener('resize', () => {
+  scene.handleResize(window.innerWidth, window.innerHeight)
+})
+
+mount.addEventListener('click', () => {
+  if (frameId) {
+    cancelAnimationFrame(frameId)
+    frameId = null
+  } else {
+    animate()
+  }
+})
+
+animate()
